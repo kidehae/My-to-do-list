@@ -10,14 +10,20 @@
     <div class="container">
       <h1>To do list 📝</h1>
       <form action="">
-        <input type="text" class="task" placeholder="What do you wanna do" />
+        <input
+          type="text"
+          class="task"
+          placeholder="What do you wanna do"
+          required
+        />
         <input type="submit" value="Add" class="addTask" />
       </form>
-      <select class="selection">
-        <option>All</option>
-        <option>Completed</option>
-        <option>Incomplete</option>
-      </select>
+      <div class="options">
+        <div class="all option selected">All</div>
+        <div class="completed option">Completed</div>
+        <div class="incomplete option">Incomplete</div>
+      </div>
+
       <div class="toDos">
         <div class="lists">
           <div class="emoji">◯</div>
@@ -28,15 +34,19 @@
           <div class="theTask">Doing laundry</div>
         </div>
         <div class="lists">
-          <span class="emoji">◯</span>
+          <div class="emoji">◯</div>
           <div class="theTask">Paying water bill</div>
+        </div>
+        <div class="lists">
+          <div class="emoji">◯</div>
+          <div class="theTask">Cooking dinner</div>
         </div>
       </div>
     </div>
     <footer>
       This project was coded by
       <a href="https://github.com/kidehae" target="_blank">Meaza Mulatu</a>
-      and is
+      and is open sourced
       <a href="https://github.com/kidehae/My-to-do-list" target="_blank">
         on GitHub</a
       >

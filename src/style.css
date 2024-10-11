@@ -5,7 +5,7 @@ body {
 .container {
   background-color: white;
   margin: 30px auto;
-  max-width: 400px;
+  max-width: 450px;
   height: 400px;
   padding: 30px;
   border-radius: 12px;
@@ -32,18 +32,32 @@ h1 {
   padding: 14px 24px;
   border-radius: 15px;
   border: none;
-  font-size: 14px;
+  font-size: 15px;
   background-color: rgb(233, 131, 15);
+  transition: all 200ms ease-in-out;
 }
 
-.selection {
-  padding: 7px;
-  background-color: rgba(241, 165, 78, 0.8);
-  border-radius: 8px;
-  margin-bottom: 15px;
-  margin-left: 12px;
+.addTask:hover {
+  background-color: rgb(225, 124, 8);
+  padding: 16px 26px;
+  font-size: 16px;
+}
+
+.options {
+  color: rgb(233, 131, 15);
+  font-size: 13px;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.option {
+  margin: 10px;
   cursor: pointer;
-  border: none;
+}
+
+.selected {
+  border-bottom: 2px solid rgb(233, 131, 15);
+  padding: 3px;
 }
 
 .theTask {
@@ -57,17 +71,53 @@ h1 {
   cursor: pointer;
 }
 
+.theTask:hover {
+  padding: 12px;
+  background-color: rgb(214, 160, 98);
+}
+
 .emoji {
   margin-right: 5px;
   margin-top: 7px;
   font-size: 20px;
   cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.emoji:hover {
+  font-size: 22px;
 }
 
 .lists {
   margin: 10px;
   display: flex;
+  transition: all 200ms ease-in-out;
 }
+
+/*adding scroll to the listed taskes*/
+
+.toDos {
+  overflow-y: auto;
+  max-height: 50%;
+}
+
+.toDos::-webkit-scrollbar {
+  width: 5px; /* width of the entire scrollbar */
+}
+
+.toDos::-webkit-scrollbar-track {
+  /* for the tracking area */
+  background-color: rgb(235, 238, 240);
+  border-radius: 30px;
+}
+
+.toDos::-webkit-scrollbar-thumb {
+  /* for the scroll thumb */
+  background-color: rgb(233, 174, 108);
+  border-radius: 30px;
+  border: none;
+}
+
 footer {
   text-align: center;
   font-size: 14px;
