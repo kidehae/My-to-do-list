@@ -13,10 +13,11 @@
         <input
           type="text"
           class="task"
+          id="task"
           placeholder="What do you wanna do"
           required
         />
-        <input type="submit" value="Add" class="addTask" />
+        <input type="submit" value="Add" class="addTask" id="addTask" />
       </form>
       <div class="options">
         <div class="all option selected">All</div>
@@ -24,22 +25,10 @@
         <div class="incomplete option">Incomplete</div>
       </div>
 
-      <div class="toDos">
-        <div class="lists">
+      <div class="toDos" id="toDos">
+        <div class="lists none" id="lists">
           <div class="emoji">◯</div>
-          <div class="theTask">Washing the dishes</div>
-        </div>
-        <div class="lists">
-          <div class="emoji">◯</div>
-          <div class="theTask">Doing laundry</div>
-        </div>
-        <div class="lists">
-          <div class="emoji">◯</div>
-          <div class="theTask">Paying water bill</div>
-        </div>
-        <div class="lists">
-          <div class="emoji">◯</div>
-          <div class="theTask">Cooking dinner</div>
+          <div class="theTask"></div>
         </div>
       </div>
     </div>
