@@ -6,21 +6,24 @@ function displayTask(events) {
   const displayedTask = document.createElement("div");
 
   writtenTask = writtenTask.value;
+  AllTask.push(writtenTask);
+  incomplteTask.push(writtenTask);
   displayedTask.classList.add("lists");
+  displayTask.id = "lists";
+  displayTask.name = "lists";
+
   displayedTask.innerHTML = ` <div class="emoji">◯</div>
   <div class="theTask">${writtenTask}</div>`;
   allTodos.appendChild(displayedTask);
 }
 
-/*function markTask() {
-  markedTask = document.querySelector("#lists");
-  markedTask.classList.add(".markedTask");
-  //marked.innerHTML = ` <div class="emoji">🟠</div>
-  //<div class="theTask">${writtenTask}</div>`;
-}*/
-
+let AllTask = [];
+let complitedTask = [];
+let incomplteTask = [];
 let addedTask = document.querySelector("form");
 addedTask.addEventListener("submit", displayTask);
 
-/*et completedTask = document.querySelector(".theTask");
-addEventListener("click", markTask);*/
+let completedTask = document.querySelector(".toDos");
+completedTask.addEventListener("click", function (event) {
+  event.target.classList.add("markedTask");
+});
