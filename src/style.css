@@ -81,9 +81,13 @@ h1 {
 }
 
 .emoji {
+  background-image: "url('https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg')";
   margin-right: 5px;
   margin-top: 7px;
-  font-size: 20px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50px;
+  border: 1px solid black;
   cursor: pointer;
   transition: all 200ms ease-in-out;
 }
