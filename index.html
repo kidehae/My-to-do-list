@@ -9,12 +9,13 @@
   <body>
     <div class="container">
       <h1>To do list 📝</h1>
-      <form action="">
+      <form action="" id="theForm">
         <input
           type="text"
           class="task"
           id="task"
           placeholder="What do you wanna do"
+          maxlength="20"
           required
         />
         <input type="submit" value="Add" class="addTask" id="addTask" />
@@ -26,9 +27,10 @@
       </div>
 
       <div class="toDos" id="toDos">
-        <!--<div class="lists none" id="lists">
-          <div class="emoji">◯</div>-->
-        <div class="theTask none" id="theTask"></div>
+        <div class="lists none" id="lists">
+          <div class="emoji">◯</div>
+          <div class="theTask none" id="theTask"></div>
+        </div>
       </div>
     </div>
     <footer>

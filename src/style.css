@@ -80,8 +80,8 @@ h1 {
   background-color: rgb(214, 160, 98);
 }
 
-.emoji {
-  background-image: "url('https://wallpapers.com/images/featured/blank-white-7sn5o1woonmklx1h.jpg')";
+input[type="checkbox"] {
+  background-color: rgb(214, 160, 98);
   margin-right: 5px;
   margin-top: 7px;
   height: 20px;
@@ -127,6 +127,16 @@ h1 {
   /* for the scroll thumb */
   background-color: rgb(233, 174, 108);
   border-radius: 30px;
+  border: none;
+}
+
+.closeSign {
+  padding: 1px 7px;
+  margin-top: 2px;
+  background-color: white;
+  font-size: 30px;
+  border-radius: 30px;
+  height: 40px;
   border: none;
 }
 
