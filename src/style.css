@@ -71,8 +71,8 @@ h1 {
   cursor: pointer;
 }
 
-.markedTask {
-  text-decoration: line-through;
+input[type="checkbox"]:checked + label {
+  text-decoration: line-through; /* Underline when checked */
 }
 
 .theTask:hover {
@@ -131,13 +131,15 @@ input[type="checkbox"] {
 }
 
 .closeSign {
-  padding: 1px 7px;
   margin-top: 2px;
+  margin-left: 5px;
   background-color: white;
   font-size: 30px;
-  border-radius: 30px;
-  height: 40px;
+  border-radius: 50px;
+  height: 30px;
   border: none;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 footer {

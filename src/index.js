@@ -47,7 +47,7 @@ function displayTask(events) {
   incomplteTask.push(writtenTask);
   displayedTask.classList.add("lists");
 
-  displayedTask.innerHTML = `<input type = checkbox id = ${taskNum} class = " checkedEmoji"  >
+  displayedTask.innerHTML = `<input type = checkbox id = ${taskNum} class = "checkedEmoji"  >
   <label for = ${taskNum} class = "theTask" >${writtenTask}</label>`;
   displayedTask.appendChild(closeSign);
   allTodos.appendChild(displayedTask);
@@ -62,5 +62,10 @@ addedTask.addEventListener("submit", displayTask);
 
 let completedTask = document.querySelector(".toDos");
 completedTask.addEventListener("click", function (event) {
-  event.target.classList.toggle("markedTask");
+  if (event.target.tagName === "LABEL") {
+    complitedTask.push(event.target);
+    console.log(complitedTask);
+  } else if (event.target.tagName === "SPAN") {
+    event.target.parentElement.remove();
+  }
 });
