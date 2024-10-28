@@ -1,37 +1,3 @@
-/*function displayTask(events) {
-  events.preventDefault();
-
-  let writtenTask = document.querySelector("#task");
-  let allTodos = document.querySelector("#toDos");
-  const displayedTask = document.createElement("div");
-
-  writtenTask = writtenTask.value;
-  AllTask.push(writtenTask);
-  incomplteTask.push(writtenTask);
-  displayedTask.classList.add("lists");
-  displayTask.id = "lists";
-  displayTask.name = "lists";
-
-  displayedTask.innerHTML = ` <div class="emoji"></div>
-  <div class="theTask">${writtenTask}</div>`;
-  allTodos.appendChild(displayedTask);
-}
-
-let AllTask = [];
-let complitedTask = [];
-let incomplteTask = [];
-let addedTask = document.querySelector("form");
-addedTask.addEventListener("submit", displayTask);
-
-let completedTask = document.querySelector(".toDos");
-completedTask.addEventListener("click", function (event) {
-  event.target.classList.toggle("markedTask");
-  let checked = document.querySelectorAll(".emoji");
-  checked.style.backgroundImage =
-    "url('https://cdn1.vectorstock.com/i/1000x1000/76/00/check-mark-icon-isolated-on-orange-background-vector-21547600.jpg')";
-});
-*/
-
 function displayTask(events) {
   events.preventDefault();
 
@@ -43,29 +9,110 @@ function displayTask(events) {
   closeSign.classList.add("closeSign");
   //"\u00d7"
   writtenTask = writtenTask.value;
-  AllTask.push(writtenTask);
-  incomplteTask.push(writtenTask);
+
   displayedTask.classList.add("lists");
 
-  displayedTask.innerHTML = `<input type = checkbox id = ${taskNum} class = "checkedEmoji"  >
-  <label for = ${taskNum} class = "theTask" >${writtenTask}</label>`;
+  displayedTask.innerHTML = `<input type = checkbox id = ${taskNum} class = "checkedEmoji checkingBox"  >
+  <label for = ${taskNum} class = "theTask allTask incomplete " >${writtenTask}</label>`;
   displayedTask.appendChild(closeSign);
   allTodos.appendChild(displayedTask);
   taskNum = taskNum + 1;
 }
 let taskNum = 0;
-let AllTask = [];
-let complitedTask = [];
-let incomplteTask = [];
+//Entering task
 let addedTask = document.querySelector("form");
 addedTask.addEventListener("submit", displayTask);
-
+//checking and removing task
 let completedTask = document.querySelector(".toDos");
 completedTask.addEventListener("click", function (event) {
   if (event.target.tagName === "LABEL") {
-    complitedTask.push(event.target);
-    console.log(complitedTask);
+    let taskId = event.target.getAttribute("for");
+    const checkbox = document.getElementById(`${taskId}`);
+    checkbox.addEventListener("click", function (events) {
+      if (checkbox.checked) {
+        //event.target.classList.remove("incomplete");
+        //event.target.classList.add("completed");
+        //event.target.classList.add("line");
+        event.target.classList.add("completed");
+      } else {
+        // event.target.classList.remove("line");
+        event.target.classList.remove("completed");
+      }
+    });
   } else if (event.target.tagName === "SPAN") {
     event.target.parentElement.remove();
   }
+});
+
+let displayAll = document.querySelector("#all");
+displayAll.addEventListener("click", function (events) {
+  events.target.classList.add("selected");
+  let deselectComplete = document.querySelector("#completed");
+  deselectComplete.classList.remove("selected");
+  let deselectIncomplete = document.querySelector("#incomplete");
+  deselectIncomplete.classList.remove("selected");
+
+  const tasks = document.querySelectorAll(".lists"); // Select all task divs
+  tasks.forEach((task) => {
+    const checkbox = task.querySelector(".checkedEmoji");
+    const closeSign = task.querySelector(".closeSign");
+    const label = task.querySelector(".theTask");
+
+    if (label.classList.contains("none")) {
+      label.classList.remove("none"); // Ensure completed tasks are visible
+      checkbox.style.display = "block"; // Show checkbox
+      closeSign.style.display = "inline"; // Show close sign
+    }
+  });
+});
+
+let displayCompleted = document.querySelector("#completed");
+displayCompleted.addEventListener("click", function (events) {
+  events.target.classList.add("selected");
+  let deselectAll = document.querySelector("#all");
+  deselectAll.classList.remove("selected");
+  let deselectIncomplete = document.querySelector("#incomplete");
+  deselectIncomplete.classList.remove("selected");
+
+  const tasks = document.querySelectorAll(".lists"); // Select all task divs
+  tasks.forEach((task) => {
+    const checkbox = task.querySelector(".checkedEmoji");
+    const closeSign = task.querySelector(".closeSign");
+    const label = task.querySelector(".theTask");
+
+    if (!label.classList.contains("completed")) {
+      label.classList.add("none"); // Add "none" class if task is not completed
+      checkbox.style.display = "none"; // Hide checkbox
+      closeSign.style.display = "none"; // Hide close sign
+    } else {
+      label.classList.remove("none"); // Ensure completed tasks are visible
+      checkbox.style.display = "block"; // Show checkbox
+      closeSign.style.display = "inline"; // Show close sign
+    }
+  });
+});
+
+let displayincomplete = document.querySelector("#incomplete");
+displayincomplete.addEventListener("click", function (events) {
+  events.target.classList.add("selected");
+  let deselectAll = document.querySelector("#all");
+  deselectAll.classList.remove("selected");
+  let deselectComplete = document.querySelector("#completed");
+  deselectComplete.classList.remove("selected");
+  const tasks = document.querySelectorAll(".lists"); // Select all task divs
+  tasks.forEach((task) => {
+    const checkbox = task.querySelector(".checkedEmoji");
+    const closeSign = task.querySelector(".closeSign");
+    const label = task.querySelector(".theTask");
+
+    if (label.classList.contains("completed")) {
+      label.classList.add("none"); // Add "none" class if task is not completed
+      checkbox.style.display = "none"; // Hide checkbox
+      closeSign.style.display = "none"; // Hide close sign
+    } else {
+      label.classList.remove("none"); // Ensure completed tasks are visible
+      checkbox.style.display = "block"; // Show checkbox
+      closeSign.style.display = "inline"; // Show close sign
+    }
+  });
 });

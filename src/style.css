@@ -72,7 +72,11 @@ h1 {
 }
 
 input[type="checkbox"]:checked + label {
-  text-decoration: line-through; /* Underline when checked */
+  text-decoration: line-through;
+}
+
+.line {
+  text-decoration: line-through;
 }
 
 .theTask:hover {
@@ -150,4 +154,16 @@ footer {
 
 footer a {
   color: rgb(187, 102, 5);
+}
+
+.allTask {
+  cursor: pointer;
+}
+
+.completed {
+  cursor: pointer;
+}
+
+.incomplete {
+  cursor: pointer;
 }

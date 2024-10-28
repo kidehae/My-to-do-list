@@ -15,23 +15,18 @@
           class="task"
           id="task"
           placeholder="What do you wanna do"
-          maxlength="30"
+          maxlength="25"
           required
         />
         <input type="submit" value="Add" class="addTask" id="addTask" />
       </form>
       <div class="options">
-        <div class="all option selected">All</div>
-        <div class="completed option">Completed</div>
-        <div class="incomplete option">Incomplete</div>
+        <div class="all option selected" id="all">All</div>
+        <div class="completedd option" id="completed">Completed</div>
+        <div class="incompletee option" id="incomplete">Incomplete</div>
       </div>
 
-      <div class="toDos" id="toDos">
-        <div class="lists none" id="lists">
-          <div class="emoji">◯</div>
-          <div class="theTask none" id="theTask"></div>
-        </div>
-      </div>
+      <div class="toDos" id="toDos"></div>
     </div>
     <footer>
       This project was coded by
