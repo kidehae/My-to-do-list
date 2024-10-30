@@ -17,28 +17,41 @@ function displayTask(events) {
   displayedTask.appendChild(closeSign);
   allTodos.appendChild(displayedTask);
   taskNum = taskNum + 1;
+  document.getElementById("task").value = "";
+  /*saveData();
+  showData;
+
+  function saveData() {
+    localStorage.setItem("data", allTodos.innerHTML);
+  }
+  function showData() {
+    allTodos.innerHTML = localStorage.getItem("data");
+  }*/
 }
 let taskNum = 0;
 //Entering task
 let addedTask = document.querySelector("form");
 addedTask.addEventListener("submit", displayTask);
 //checking and removing task
+
 let completedTask = document.querySelector(".toDos");
+
 completedTask.addEventListener("click", function (event) {
-  if (event.target.tagName === "LABEL") {
-    let taskId = event.target.getAttribute("for");
-    const checkbox = document.getElementById(`${taskId}`);
-    checkbox.addEventListener("click", function (events) {
-      if (checkbox.checked) {
-        //event.target.classList.remove("incomplete");
-        //event.target.classList.add("completed");
-        //event.target.classList.add("line");
-        event.target.classList.add("completed");
-      } else {
-        // event.target.classList.remove("line");
-        event.target.classList.remove("completed");
+  if (event.target.tagName === "INPUT") {
+    let taskId = event.target.id;
+    const checkbox = document.getElementById(taskId);
+
+    if (checkbox.checked) {
+      const associatedLabel = document.querySelector(`label[for="${taskId}"]`);
+      if (associatedLabel) {
+        associatedLabel.classList.add("completed");
       }
-    });
+    } else {
+      const associatedLabel = document.querySelector(`label[for="${taskId}"]`);
+      if (associatedLabel) {
+        associatedLabel.classList.remove("completed");
+      }
+    }
   } else if (event.target.tagName === "SPAN") {
     event.target.parentElement.remove();
   }
