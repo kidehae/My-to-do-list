@@ -1,3 +1,4 @@
+//Entering and displaying tasks
 function displayTask(events) {
   events.preventDefault();
 
@@ -18,24 +19,11 @@ function displayTask(events) {
   allTodos.appendChild(displayedTask);
   taskNum = taskNum + 1;
   document.getElementById("task").value = "";
-  /*saveData();
-  showData;
-
-  function saveData() {
-    localStorage.setItem("data", allTodos.innerHTML);
-  }
-  function showData() {
-    allTodos.innerHTML = localStorage.getItem("data");
-  }*/
+  saveTasks();
 }
-let taskNum = 0;
-//Entering task
-let addedTask = document.querySelector("form");
-addedTask.addEventListener("submit", displayTask);
+
 //checking and removing task
-
 let completedTask = document.querySelector(".toDos");
-
 completedTask.addEventListener("click", function (event) {
   if (event.target.tagName === "INPUT") {
     let taskId = event.target.id;
@@ -55,8 +43,10 @@ completedTask.addEventListener("click", function (event) {
   } else if (event.target.tagName === "SPAN") {
     event.target.parentElement.remove();
   }
+  saveTasks();
 });
 
+//displaying all tasks
 let displayAll = document.querySelector("#all");
 displayAll.addEventListener("click", function (events) {
   events.target.classList.add("selected");
@@ -75,10 +65,12 @@ displayAll.addEventListener("click", function (events) {
       label.classList.remove("none"); // Ensure completed tasks are visible
       checkbox.style.display = "block"; // Show checkbox
       closeSign.style.display = "inline"; // Show close sign
+      task.classList.remove("none");
     }
   });
 });
 
+//diplaying complited tasks
 let displayCompleted = document.querySelector("#completed");
 displayCompleted.addEventListener("click", function (events) {
   events.target.classList.add("selected");
@@ -97,14 +89,17 @@ displayCompleted.addEventListener("click", function (events) {
       label.classList.add("none"); // Add "none" class if task is not completed
       checkbox.style.display = "none"; // Hide checkbox
       closeSign.style.display = "none"; // Hide close sign
+      task.classList.add("none");
     } else {
       label.classList.remove("none"); // Ensure completed tasks are visible
       checkbox.style.display = "block"; // Show checkbox
       closeSign.style.display = "inline"; // Show close sign
+      task.classList.remove("none");
     }
   });
 });
 
+//displaying incomplete tasks
 let displayincomplete = document.querySelector("#incomplete");
 displayincomplete.addEventListener("click", function (events) {
   events.target.classList.add("selected");
@@ -122,10 +117,70 @@ displayincomplete.addEventListener("click", function (events) {
       label.classList.add("none"); // Add "none" class if task is not completed
       checkbox.style.display = "none"; // Hide checkbox
       closeSign.style.display = "none"; // Hide close sign
+      task.classList.add("none");
     } else {
       label.classList.remove("none"); // Ensure completed tasks are visible
       checkbox.style.display = "block"; // Show checkbox
       closeSign.style.display = "inline"; // Show close sign
+      task.classList.remove("none");
     }
   });
 });
+
+//saving to local disk
+function saveTasks() {
+  let tasks = [];
+  let allTodos = document.querySelector("#toDos");
+
+  allTodos.querySelectorAll(".lists").forEach(function (item) {
+    const taskText = item.querySelector(".theTask").textContent.trim();
+    const checkbox = item.querySelector(".checkedEmoji");
+    const isChecked = checkbox.checked; // Get the checked state
+
+    // Store each task as an object with text and completion status
+    tasks.push({
+      text: taskText,
+      completed: isChecked,
+    });
+  });
+
+  // Save tasks to localStorage
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+//Loading Tasks
+function loadTasks() {
+  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  tasks.forEach((task) => {
+    const allTodos = document.querySelector("#toDos");
+    const displayedTask = document.createElement("div");
+    const closeSign = document.createElement("span");
+    closeSign.innerHTML = "\u00d7";
+    closeSign.classList.add("closeSign");
+
+    displayedTask.classList.add("lists");
+    const currentTaskId = taskNum; // Use current taskNum for the checkbox ID
+
+    // Set the checkbox to checked if the task is completed
+    const checkedAttribute = task.completed ? "checked" : "";
+
+    displayedTask.innerHTML = `
+      <input type="checkbox" id="${currentTaskId}" class="checkedEmoji checkingBox" ${checkedAttribute}>
+      <label for="${currentTaskId}" class="theTask allTask incomplete ${
+      task.completed ? "completed" : ""
+    }">${task.text}</label>
+    `;
+
+    displayedTask.appendChild(closeSign);
+    allTodos.appendChild(displayedTask);
+
+    taskNum++;
+  });
+}
+
+window.onload = loadTasks;
+let taskNum = 0;
+//Entering task
+let addedTask = document.querySelector("form");
+addedTask.addEventListener("submit", displayTask);
