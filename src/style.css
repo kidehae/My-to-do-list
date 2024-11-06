@@ -7,7 +7,7 @@ body {
   margin: 30px auto;
   max-width: 450px;
   height: 400px;
-  padding: 30px;
+  padding: 30px 30px 50px 30px;
   border-radius: 12px;
   box-shadow: rgba(233, 131, 15, 0.4) 5px 5px, rgba(233, 131, 15, 0.3) 10px 10px,
     rgba(233, 131, 15, 0.2) 15px 15px, rgba(233, 131, 15, 0.1) 20px 20px,
@@ -75,10 +75,6 @@ input[type="checkbox"]:checked + label {
   text-decoration: line-through;
 }
 
-.line {
-  text-decoration: line-through;
-}
-
 .theTask:hover {
   padding: 12px;
   background-color: rgb(214, 160, 98);
@@ -96,10 +92,6 @@ input[type="checkbox"] {
   transition: all 200ms ease-in-out;
 }
 
-.emoji:hover {
-  font-size: 22px;
-}
-
 .lists {
   margin: 10px;
   display: flex;
@@ -108,12 +100,7 @@ input[type="checkbox"] {
 
 .none {
   display: none;
-  width: 0;
-  height: 0;
-  padding: 0;
-  margin: 0;
   visibility: hidden;
-  max-height: 0;
 }
 
 /*adding scroll to the listed taskes*/
@@ -141,7 +128,7 @@ input[type="checkbox"] {
 }
 
 .closeSign {
-  margin-top: 2px;
+  margin-top: none;
   margin-left: 5px;
   background-color: white;
   font-size: 30px;
@@ -162,14 +149,92 @@ footer a {
   color: rgb(187, 102, 5);
 }
 
-.allTask {
-  cursor: pointer;
+/*Adgusting the app for different devices*/
+@media (max-width: 600px) {
+  /* Styles for small screens */
+  .container {
+    max-width: 300px;
+    height: 350px;
+  }
+  .task {
+    width: 40%;
+    font-size: 14px;
+  }
+  .theTask {
+    width: 150px;
+  }
+  .closeSign {
+    font-size: 30px;
+    height: 30px;
+  }
+  footer {
+    font-size: 13px;
+  }
 }
 
-.completed {
-  cursor: pointer;
+/* Tablets (portrait mode) */
+@media (max-width: 768px) {
+  /* Styles for medium screens */
+  .container {
+    max-width: 400px;
+  }
+  .task {
+    width: 40%;
+    font-size: 14.5px;
+  }
+  .theTask {
+    width: 180px;
+  }
+  .closeSign {
+    font-size: 30px;
+    height: 30px;
+  }
+  footer {
+    font-size: 13px;
+  }
 }
 
-.incomplete {
-  cursor: pointer;
+/* Tablets and small laptops (landscape mode) */
+@media (max-width: 1024px) {
+  /* Styles for larger tablets or small laptops */
+  .container {
+    max-width: 450px;
+  }
+  .task {
+    width: 50%;
+    font-size: 15px;
+  }
+  .theTask {
+    width: 200px;
+  }
+  .closeSign {
+    font-size: 35px;
+    height: 35px;
+  }
+  footer {
+    font-size: 14px;
+  }
+}
+
+/* Desktops and larger screens */
+@media (min-width: 1025px) {
+  /* Styles for large screens */
+  .container {
+    max-width: 500px;
+    margin: 20px auto;
+  }
+  .task {
+    width: 65%;
+    font-size: 15px;
+  }
+  .theTask {
+    width: 250px;
+  }
+  .closeSign {
+    font-size: 40px;
+    height: 40px;
+  }
+  footer {
+    font-size: 15px;
+  }
 }
